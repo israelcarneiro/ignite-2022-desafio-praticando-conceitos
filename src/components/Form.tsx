@@ -40,6 +40,16 @@ export function Form() {
     setNewTask(event.currentTarget.value)
   }
 
+  const handleDelete = async (id: string) => {
+    await api.delete(`/tasks/${id}`)
+
+    const newTaskListWithoutTheDeleteComment = tasks.filter(
+      task => task.id !== id
+    )
+
+    setTasks(newTaskListWithoutTheDeleteComment)
+  }
+
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -55,7 +65,7 @@ export function Form() {
           <PlusCircle size={20} weight='bold' />
         </button>
       </form>
-      <TodoComponent tasks={tasks} />
+      <TodoComponent tasks={tasks} handleDelete={handleDelete} />
     </>
   )
 }

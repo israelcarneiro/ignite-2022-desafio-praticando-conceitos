@@ -2,6 +2,7 @@ import { FormEvent, useMemo, useState } from 'react'
 
 import { Trash } from 'phosphor-react'
 
+import { api } from '../utils/api'
 import styles from './TodoComponent.module.css'
 
 interface Task {
@@ -12,9 +13,10 @@ interface Task {
 
 interface TodoComponentProps {
   tasks: Task[]
+  handleDelete: (id: string) => void
 }
 
-export function TodoComponent({ tasks }: TodoComponentProps) {
+export function TodoComponent({ tasks, handleDelete }: TodoComponentProps) {
   const [checked, setChecked] = useState<any>([])
 
   const handleChecked = (event: FormEvent<HTMLInputElement>) => {
@@ -38,10 +40,10 @@ export function TodoComponent({ tasks }: TodoComponentProps) {
     return count
   }, [tasks])
 
-  const tasksDone = useMemo(() => {
-    const done = tasks.filter(task => task.isDone === true).length
-    return done
-  }, [tasks])
+  const tasksDoneCount = useMemo(() => {
+    const countDone = checked.length
+    return countDone
+  }, [checked])
 
   return (
     <div className={styles.wrapper}>
@@ -52,7 +54,7 @@ export function TodoComponent({ tasks }: TodoComponentProps) {
         <h6>
           Concluídas
           <span>
-            {tasksDone} de {tasksCount}
+            {tasksDoneCount} de {tasksCount}
           </span>
         </h6>
       </div>
@@ -62,7 +64,7 @@ export function TodoComponent({ tasks }: TodoComponentProps) {
             <input type='checkbox' value={task.id} onChange={handleChecked} />
           </label>
           <span className={isChecked(task.id)}>{task.task}</span>
-          <Trash size={30} />
+          <Trash size={30} onClick={() => handleDelete(task.id)} />
         </div>
       ))}
     </div>
