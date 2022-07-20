@@ -1,22 +1,37 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, InputHTMLAttributes, useEffect, useState } from 'react'
 
 import { PlusCircle } from 'phosphor-react'
 
+import { api } from '../utils/api'
 import styles from './Form.module.css'
 
 export function Form() {
-  const [tasks, setTasks] = useState('')
-  const [newTask, setNewTask] = useState()
+  const [newTask, setNewTask] = useState('')
 
-  useEffect(() => {}, [])
-
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault()
+    await api.post('tasks', {
+      id: Math.floor(Date.now() * Math.random()).toString(36),
+      task: newTask,
+      isDone: false
+    })
+
+    setNewTask('')
+  }
+
+  function handleNewTaskChange(event: React.FormEvent<HTMLInputElement>) {
+    setNewTask(event.currentTarget.value)
   }
 
   return (
-    <form className={styles.form}>
-      <input type='text' placeholder='Adicione uma nova tarefa' value={task} />
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input
+        type='text'
+        placeholder='Adicione uma nova tarefa'
+        name='task'
+        value={newTask}
+        onChange={handleNewTaskChange}
+      />
       <button type='submit'>
         Criar
         <PlusCircle size={20} weight='bold' />

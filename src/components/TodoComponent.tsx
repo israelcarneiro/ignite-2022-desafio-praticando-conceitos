@@ -1,9 +1,20 @@
+import { useEffect } from 'react'
+
 import { Trash } from 'phosphor-react'
 
+import { api } from '../utils/api'
 import styles from './TodoComponent.module.css'
 
 export function TodoComponent() {
   const isChecked = true
+
+  useEffect(() => {
+    const loadTasks = async () => {
+      const response = await api.get('/tasks')
+      // console.log(response)
+    }
+    loadTasks()
+  }, [])
 
   return (
     <div className={styles.wrapper}>
