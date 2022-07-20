@@ -30,11 +30,8 @@ export function TodoComponent({ tasks }: TodoComponentProps) {
     console.log(checked)
   }
 
-  const isChecked = (item: string) => {
-    return checked.includes(item)
-      ? 'styles.checkedTasks'
-      : 'styles.notCheckedTasks'
-  }
+  const isChecked = (item: string) =>
+    checked.includes(item) ? styles.checkedTasks : styles.notCheckedTasks
 
   const tasksCount = useMemo(() => {
     const count = tasks.length
@@ -62,17 +59,9 @@ export function TodoComponent({ tasks }: TodoComponentProps) {
       {tasks.map(task => (
         <div className={styles.todo} key={task.id}>
           <label className={styles.customCheckbox}>
-            <input type='checkbox' value={task.task} onChange={handleChecked} />
+            <input type='checkbox' value={task.id} onChange={handleChecked} />
           </label>
-          <span
-            className={
-              checked.includes(task.task)
-                ? styles.checkedTasks
-                : styles.notCheckedTasks
-            }
-          >
-            {task.task}
-          </span>
+          <span className={isChecked(task.id)}>{task.task}</span>
           <Trash size={30} />
         </div>
       ))}
