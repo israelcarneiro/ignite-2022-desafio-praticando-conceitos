@@ -1,11 +1,14 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 import { PlusCircle } from 'phosphor-react'
 
 import styles from './Form.module.css'
 
 export function Form() {
-  const [task, setTask] = useState('')
+  const [tasks, setTasks] = useState('')
+  const [newTask, setNewTask] = useState()
+
+  useEffect(() => {}, [])
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
