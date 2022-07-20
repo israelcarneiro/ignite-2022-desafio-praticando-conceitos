@@ -56,7 +56,7 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
 
-You can see the tasks [http://localhost:3000](http://localhost:3000) on this endpoint
+You can see the tasks [http://localhost:3001/tasks](http://localhost:3001/tasks) on this endpoint
 
 You can use the most commons HTTP methos (GET,PUT,POST,DELETE)
 
