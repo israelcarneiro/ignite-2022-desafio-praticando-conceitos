@@ -53,20 +53,14 @@
   color: var(--danger)
 }
 
-
-
 .todo span {
   font-size: 0.875rem;
   line-height: 140%;
   font-weight: 400;
 }
 
-.task  {
-  text-decoration: none;
 
-}
-
-.taskScratch {
+.checkedTasks {
   text-decoration: line-through;
   color: var(--gray-300);
 }

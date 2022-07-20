@@ -1,51 +1,81 @@
-import { useEffect } from 'react'
+import { FormEvent, useMemo, useState } from 'react'
 
 import { Trash } from 'phosphor-react'
 
-import { api } from '../utils/api'
 import styles from './TodoComponent.module.css'
 
-export function TodoComponent() {
-  const isChecked = true
+interface Task {
+  id: string
+  task: string
+  isDone: boolean
+}
 
-  useEffect(() => {
-    const loadTasks = async () => {
-      const response = await api.get('/tasks')
-      // console.log(response)
+interface TodoComponentProps {
+  tasks: Task[]
+}
+
+export function TodoComponent({ tasks }: TodoComponentProps) {
+  const [checked, setChecked] = useState<any>([])
+
+  const handleChecked = (event: FormEvent<HTMLInputElement>) => {
+    let checkedTasks = [...checked]
+
+    if (event.currentTarget.checked) {
+      checkedTasks = [...checked, event.currentTarget.value]
+    } else {
+      checkedTasks.splice(checked.indexOf(event.currentTarget.value), 1)
     }
-    loadTasks()
-  }, [])
+
+    setChecked(checkedTasks)
+    console.log(checked)
+  }
+
+  const isChecked = (item: string) => {
+    return checked.includes(item)
+      ? 'styles.checkedTasks'
+      : 'styles.notCheckedTasks'
+  }
+
+  const tasksCount = useMemo(() => {
+    const count = tasks.length
+    return count
+  }, [tasks])
+
+  const tasksDone = useMemo(() => {
+    const done = tasks.filter(task => task.isDone === true).length
+    return done
+  }, [tasks])
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h6>
-          Tarefas criadas <span>5</span>
+          Tarefas criadas <span>{tasksCount}</span>
         </h6>
         <h6>
-          Concluídas <span>2 de 5</span>
+          Concluídas
+          <span>
+            {tasksDone} de {tasksCount}
+          </span>
         </h6>
       </div>
-      <div className={styles.todo}>
-        <label className={styles.customCheckbox}>
-          <input type='checkbox' />
-        </label>
-        <span className={styles.task}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ullam
-          sapiente molestias dolorum tenetur doloremque perspiciatis.
-        </span>
-        <Trash size={30} />
-      </div>
-      <div className={styles.todo}>
-        <label className={styles.customCheckbox}>
-          <input type='checkbox' checked />
-        </label>
-        <span className={isChecked ? styles.taskScratch : styles.task}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ullam
-          sapiente molestias dolorum tenetur doloremque perspiciatis.
-        </span>
-        <Trash size={30} />
-      </div>
+      {tasks.map(task => (
+        <div className={styles.todo} key={task.id}>
+          <label className={styles.customCheckbox}>
+            <input type='checkbox' value={task.task} onChange={handleChecked} />
+          </label>
+          <span
+            className={
+              checked.includes(task.task)
+                ? styles.checkedTasks
+                : styles.notCheckedTasks
+            }
+          >
+            {task.task}
+          </span>
+          <Trash size={30} />
+        </div>
+      ))}
     </div>
   )
 }
