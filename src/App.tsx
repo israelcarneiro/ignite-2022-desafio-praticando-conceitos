@@ -1,6 +1,5 @@
 import { Form } from './components/Form'
 import { Header } from './components/Header'
-import { TodoComponent } from './components/TodoComponent'
 import './global.css'
 
 export function App() {
@@ -8,7 +7,6 @@ export function App() {
     <>
       <Header />
       <Form />
-      <TodoComponent />
     </>
   )
 }
