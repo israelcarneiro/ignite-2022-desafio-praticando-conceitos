@@ -35,6 +35,34 @@ This app features all the latest tools and practices in web development!
 - 🧑‍💻 **TypeScript** - A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 - 💽 **Json-Server** - A Fake Database Server 
 
+## Getting started
+
+Clone this repository then,
+run the json server:
+
+```bash
+npm run jsonserver
+# or
+yarn jsonserver
+```
+
+run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
+
+You can see the tasks [http://localhost:3000](http://localhost:3000) on this endpoint
+
+You can use the most commons HTTP methos (GET,PUT,POST,DELETE)
+
+You can start editing the page by modifying `components` directory. The page auto-updates as you edit the file.
+
+
 ## The Challenge
 
 You can check the challenge here: https://efficient-sloth-d85.notion.site/Desafio-01-Praticando-os-conceitos-do-ReactJS-91fd63dd1a5b4a2796152de293ec1074
