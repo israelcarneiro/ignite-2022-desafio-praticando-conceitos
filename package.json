@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "jsonserver": "json-server --watch db.json"
   },
   "dependencies": {
     "json-server": "^0.17.0",
