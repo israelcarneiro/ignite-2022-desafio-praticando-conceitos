@@ -118,4 +118,43 @@
   filter: brightness(0.9);
 }
 
+.emptyWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 244px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.emptyTasks {
+  margin: 1.5rem 0 0;
+  border-top: 2px solid #333;
+  width: 736px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.emptyTasks img {
+  margin-top: 4rem ;
+  width: 40px;
+  height: 40px;
+}
+
+.emptyTasks strong {
+  margin-top: 1rem ;
+  font-weight: bold;
+  color: var(--gray-300);
+  font-size: 1rem;
+}
+
+.emptyTasks span {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--gray-300);
+}
 

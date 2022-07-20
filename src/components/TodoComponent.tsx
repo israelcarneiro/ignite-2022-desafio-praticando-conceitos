@@ -2,7 +2,7 @@ import { FormEvent, useMemo, useState } from 'react'
 
 import { Trash } from 'phosphor-react'
 
-import { api } from '../utils/api'
+import blankImg from '../assets/blank.png'
 import styles from './TodoComponent.module.css'
 
 interface Task {
@@ -58,6 +58,15 @@ export function TodoComponent({ tasks, handleDelete }: TodoComponentProps) {
           </span>
         </h6>
       </div>
+      {tasksCount === 0 && (
+        <div className={styles.emptyWrapper}>
+          <div className={styles.emptyTasks}>
+            <img src={blankImg} alt='Folha em branco' />
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            <span>Crie tarefas e organize seus itens a fazer</span>
+          </div>
+        </div>
+      )}
       {tasks.map(task => (
         <div className={styles.todo} key={task.id}>
           <label className={styles.customCheckbox}>
