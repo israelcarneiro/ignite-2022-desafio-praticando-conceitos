@@ -1,0 +1,16 @@
+.header {
+  height: 12.5rem;
+  background: var(--gray-700);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.header img {
+  max-width: 126px;
+  max-height: 48px;
+  height: 100%;
+  width: 100%;
+}
