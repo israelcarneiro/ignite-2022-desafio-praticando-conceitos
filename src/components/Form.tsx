@@ -28,8 +28,7 @@ export function Form() {
     event.preventDefault()
     await api.post('tasks', {
       id: Math.floor(Date.now() * Math.random()).toString(36),
-      task: newTask,
-      isDone: false
+      task: newTask
     })
     const response = await api.get('/tasks')
     setTasks(response.data)
