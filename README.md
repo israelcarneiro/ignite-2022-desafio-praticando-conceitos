@@ -1,6 +1,6 @@
 <h1 align="center">
 <br>
-  <img src="https://ibb.co/zm8jt9R" alt="Todo Project" width="300">
+  <img src="https://i.ibb.co/j8VBj0M/logo.png" alt="Todo Project">
 <br>
 <br>
 Todo List
